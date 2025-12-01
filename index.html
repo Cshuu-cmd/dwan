@@ -27,7 +27,7 @@
     <section class="hero">
         <img src="bg.JPG" alt="Team" class="hero-bg">
         <div class="hero_title">
-            <h1>Selamat Datang</h1>
+            <h1>Selamat Datang di</h1>
         </div>
         <div class="hero-content">
             <p class="hero-text">Dharma Wanita PPN Kota Tual</p>
@@ -157,7 +157,7 @@
             <div class="contact-info">
                 <h2>Contact Us</h2>
                 <div class="contact-details">
-                    <p>Our mailing address is:</p>
+                    <p>Kontak kami dengan : </p>
                     <p class="address"><br>Phone: 705-742-3221</p>
                 </div>
                 <div class="social-links">
@@ -170,7 +170,7 @@
 
             <div class="contact-form-wrapper">
                 <div class="form-tagline">
-                    <p>Great vision without great people is irrelevant.<br>Let's work together.</p>
+                    <p>Visi yang hebat tanpa orang-orang hebat tidak ada artinya.<br>Ayo sampaikan kritik/saran kamu.<br>Let's work together.</p>
                 </div>
                 <form class="contact-form">
                     <input type="text" placeholder="Enter your Name" required>
@@ -190,56 +190,43 @@
     </footer>
 
     <script>
-        // Get navbar elements
-        const navbar = document.getElementById('navbar');
-        const menuToggle = document.getElementById('menuToggle');
-        const navMenu = document.getElementById('navMenu');
-        let lastScrollTop = 0;
-        let isNavbarVisible = true;
+    // Get navbar elements
+    const navbar = document.getElementById('navbar');
+    const menuToggle = document.getElementById('menuToggle');
+    const navMenu = document.getElementById('navMenu');
+    let lastScrollTop = 0;
+    let isNavbarVisible = true;
 
-        // Toggle menu pada mobile
-        menuToggle.addEventListener('click', function() {
-            menuToggle.classList.toggle('active');
-            navMenu.classList.toggle('active');
+    // Toggle menu pada mobile
+    menuToggle.addEventListener('click', function() {
+        navMenu.classList.toggle('active');
+        menuToggle.classList.toggle('active');
+    });
+
+    // Tutup menu saat klik link
+    const navLinks = document.querySelectorAll('#navMenu a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            navMenu.classList.remove('active');
+            menuToggle.classList.remove('active');
         });
+    });
 
-        // Tutup menu saat klik link
-        const navLinks = document.querySelectorAll('nav a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                menuToggle.classList.remove('active');
-                navMenu.classList.remove('active');
-                navbar.classList.remove('hide-nav');
-                isNavbarVisible = true;
-            });
-        });
-
-        // Listen to scroll event
-        window.addEventListener('scroll', function() {
-            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-            // Jika user scroll ke bawah dan sudah melewati hero section
-            if (scrollTop > lastScrollTop && scrollTop > 100) {
-                // Hide navbar
-                if (isNavbarVisible) {
-                    navbar.classList.add('hide-nav');
-                    isNavbarVisible = false;
-                    // Tutup menu jika terbuka
-                    menuToggle.classList.remove('active');
-                    navMenu.classList.remove('active');
-                }
-            } 
-            // Jika user scroll ke atas
-            else if (scrollTop < lastScrollTop) {
-                // Show navbar
-                if (!isNavbarVisible) {
-                    navbar.classList.remove('hide-nav');
-                    isNavbarVisible = true;
-                }
-            }
-
-            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-        });
+    // Listen to scroll event
+    window.addEventListener('scroll', function() {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (scrollTop > lastScrollTop && scrollTop > 100) {
+            // Scrolling DOWN
+            navbar.classList.add('hide-nav');
+            isNavbarVisible = false;
+        } else {
+            // Scrolling UP
+            navbar.classList.remove('hide-nav');
+            isNavbarVisible = true;
+        }
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    });
     </script>
 </body>
 </html>
